@@ -2,22 +2,18 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import hero from "../assets/hero.mp4";
 import "../styles/main.scss";
+import { useNavigate } from "react-router-dom";
+import Dashboard from "../components/Dashboard";
 
 function LandingPage() {
+  const navigate = useNavigate();
+
+  const dashboard = () => {
+    navigate("/dashboard");
+  };
   return (
     <div className="main-div">
-      <Navbar />
-      <div className="d-hero">
-        <video
-          autoPlay
-          loop
-          muted
-          className="p-middle-video"
-          style={{ width: "100%" }}
-        >
-          <source src={hero} type="video/mp4" />
-        </video>
-      </div>
+      <div className="d-hero"></div>
       <div className="home-left-section">
         <h1 className="home-title">Stream money every second.</h1>
 
@@ -26,7 +22,9 @@ function LandingPage() {
           subscriptions, salaries, vesting, and rewards to DAOs and
           crypto-native businesses worldwide.
         </p>
-        <button className="home-btn">Get started</button>
+        <button className="home-btn" onClick={() => dashboard()}>
+          Get started
+        </button>
       </div>
     </div>
   );

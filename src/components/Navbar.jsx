@@ -14,9 +14,10 @@ function Navbar() {
       <header className="header">
         <nav className="navbar">
           <span className="logo">
-            <Link to="/">
+            {/* <Link to="/">
               <img src={logo} alt="" />
-            </Link>
+            </Link> */}
+            <h1>StreamPay APIHub</h1>
           </span>
           {/* <ul className={isExpanded === false ? "navmenu" : "navmenu active"}>
             <li className="navitem">
