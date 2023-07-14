@@ -42,6 +42,7 @@ function Navbar() {
               </span>
             </li>
           </ul> */}
+
           <ConnectKitButton
             accountStatus={{
               smallScreen: "avatar",
