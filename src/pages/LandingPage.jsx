@@ -45,9 +45,22 @@ function LandingPage() {
         <div className="hero-right">
           <img className="hero-right-bg1" src={img1} alt="backgroundimage" />
         </div>
+        <div className="green-blob"></div>
+        <div className="blue-blob"></div>
       </div>
       <div className="section2">
-        <h1 style={{ color: "white" }}>How Its Works</h1>
+        <div
+          style={{
+            color: "white",
+            fontSize: "1.5rem",
+            width: "50%",
+            margin: "0 auto",
+          }}
+        >
+          {" "}
+          <h1>How Its Works</h1>
+        </div>
+
         <div style={{ margin: "40px 0px" }}>
           <div className="card-main ">
             <img src={card1Img}></img>
