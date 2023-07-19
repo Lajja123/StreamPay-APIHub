@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
 import ListApi from "./components/ListApi";
+import Transacation from "./components/Transacation";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/listapi" element={<ListApi />} />
+            <Route path="/subscription" element={<Transacation />} />
           </Routes>
         </Router>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { data } from "../DummyData/ApiGrid";
+import PDFViewer from "pdf-viewer-reactjs";
 import "../styles/main.scss";
 
 const SubscriptionPlanCard = ({ title, price, features }) => {
@@ -60,7 +60,6 @@ function ListApi() {
             style={{ width: "100px" }}
           />
           <h2>{singleApi.name}</h2>
-          <p>{singleApi.description}</p>
         </>
       )}{" "}
       <div>
@@ -71,13 +70,17 @@ function ListApi() {
       {isAppInfoOpen && (
         <div>
           {/* Render the detailed app info here */}
-          <p>App info details...</p>
+          <p>{singleApi.description}</p>
         </div>
       )}
       {isDocumentOpen && (
         <div>
           {/* Render the detailed app info here */}
-          <p>document details...</p>
+          <PDFViewer
+            document={{
+              url: "https://arxiv.org/pdf/quant-ph/0410100.pdf",
+            }}
+          />
         </div>
       )}
       {isPricingOpen && (

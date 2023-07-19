@@ -1,19 +1,12 @@
 // Navbar css //
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 10vh;
-  max-height: 10vh;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
   .navbar {
-    color: black;
+    background-color: #080b18;
     padding: 8px;
-    width: 75%;
-    margin: 10px auto;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
     .logo {
       /* padding: 0 20px; */
@@ -113,6 +106,17 @@
   margin: 10px;
   width: 70%;
 }
+.ibjPeM,
+.ibjPeM * {
+  font-family: var(--ck-font-family);
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  background-color: #2dda8f;
+  color: black;
+  font-size: 17px;
+  padding-right: 30px;
+}
 
 @media (max-width: 768px) {
   .header {
@@ -169,27 +173,100 @@
 }
 
 // ............... LandingPage...................//
+
 .home-left-section {
   width: 50%;
-  margin: 10% auto;
+  display: flex;
+  text-align: initial;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+.hero-right {
+  width: 500px;
+  position: relative;
+  left: 80px;
+}
+.hero-right-bg1 {
+  width: 500px;
+}
+.landing-flex {
+  display: flex;
+  margin: 40px 0px;
+  align-items: center;
+  justify-content: space-between;
 }
 .home-title {
   font-size: 3.5rem;
-  margin: 0px;
+  color: #ffffff;
+  padding: 10px;
 }
+.home-title2 {
+  color: #2dda8f;
+  padding: 10px;
+  font-size: 20px;
+}
+
 .home-desc {
-  font-size: 1.2rem;
+  font-size: 1rem;
   letter-spacing: 2px;
+  padding: 10px;
+  color: darkgrey;
 }
 .home-btn {
-  background-color: #1db227;
+  background-color: #2dda8f;
   border: 1px solid black;
   width: 200px;
   padding: 15px;
-  font-size: 18px;
-  color: white;
+  font-size: 20px;
+  color: black;
   border-radius: 15px;
 }
+.card-main {
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; /* Center the background image both vertically and horizontally */
+  justify-content: space-between;
+  background-image: url(/src/assets/1_bg.png);
+}
+.card-img2 {
+  background-image: url("../assets/2_bg.png");
+  background-size: cover; /* Adjust the background size to cover the entire container */
+  background-repeat: no-repeat; /* Prevent repeating the background image */
+}
+.card-img3 {
+  background-image: url("../assets/3_bg.png");
+  background-size: cover; /* Adjust the background size to cover the entire container */
+  background-repeat: no-repeat; /* Prevent repeating the background image */
+}
+
+.card-main img {
+  width: 30%;
+  height: auto;
+  margin: 20px;
+  border-radius: 8px;
+}
+
+.card-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+}
+
+.card-header h2 {
+  margin-left: 10px;
+}
+
 // ...........Dadhboard css.............
 
 .dash-main {
@@ -239,16 +316,60 @@
 }
 
 // .............ListApi..........
-/* ListApi.css */
 
-/* Grid container for the subscription cards */
 .subscription-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
-/* Subscription card */
+.subscription-card {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subscription-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.subscription-card h2 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.subscription-card ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.subscription-card li {
+  margin-bottom: 10px;
+}
+
+.subscription-card button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.subscription-card button:hover {
+  background-color: #45a049;
+}
+.subscription-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
 .subscription-card {
   background-color: #f5f5f5;
   border-radius: 8px;
@@ -292,69 +413,12 @@
   background-color: #45a049;
 }
 
-/* API image */
-/* ListApi.css */
-
-/* Grid container for the subscription cards */
-.subscription-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-/* Subscription card */
-.subscription-card {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.subscription-card h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.subscription-card h2 {
-  font-size: 36px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.subscription-card ul {
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 20px;
-}
-
-.subscription-card li {
-  margin-bottom: 10px;
-}
-
-.subscription-card button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.subscription-card button:hover {
-  background-color: #45a049;
-}
-
-/* API image */
 .api-image {
   width: 100px;
   border-radius: 8px;
   margin-bottom: 10px;
 }
-/* ListApi.css */
 
-/* API Info section */
 .api-info {
   display: flex;
   align-items: center;
