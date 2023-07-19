@@ -320,7 +320,7 @@
 .api-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 50px;
 }
 
 .api-card {
@@ -330,7 +330,12 @@
   background-color: #f9f9f9;
   transition: box-shadow 0.3s ease;
   display: flex;
+  min-height: 25vh;
   align-items: center;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(9, 9, 121) 100%);
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .api-card:hover {
@@ -354,19 +359,39 @@
   color: #666;
 }
 .dashboard-main {
-  margin: 50px;
+  padding: 50px 0px;
 }
-
+.description {
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-align: justify;
+  text-overflow: ellipsis;
+}
 // .............ListApi..........
-
+.listapi-tabBtn {
+  padding: 0px 20px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+.listapi-tabBtn:hover {
+  color: #2a23cf;
+}
 .subscription-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  gap: 30px;
+  margin: 30px 100px;
+  color: white;
 }
 
 .subscription-card {
-  background-color: #f5f5f5;
+  background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(9, 9, 121) 100%);
+  border: 1px solid #ddd;
+  border-radius: 4px;
   border-radius: 8px;
   padding: 20px;
   text-align: center;
@@ -380,7 +405,7 @@
 
 .subscription-card h2 {
   font-size: 36px;
-  color: #333;
+  color: white;
   margin-bottom: 20px;
 }
 
@@ -415,7 +440,7 @@
 .subscription-card {
   background-color: #f5f5f5;
   border-radius: 8px;
-  padding: 20px;
+  padding: 30px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -427,7 +452,7 @@
 
 .subscription-card h2 {
   font-size: 36px;
-  color: #333;
+  color: white;
   margin-bottom: 20px;
 }
 
@@ -442,8 +467,8 @@
 }
 
 .subscription-card button {
-  background-color: #4caf50;
-  color: white;
+  background-color: rgb(45, 218, 143);
+  color: black;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;

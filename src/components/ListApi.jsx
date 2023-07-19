@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import PDFViewer from "pdf-viewer-reactjs";
 import "../styles/main.scss";
-
 const SubscriptionPlanCard = ({ title, price, features }) => {
   return (
     <div className="subscription-card">
@@ -17,71 +16,93 @@ const SubscriptionPlanCard = ({ title, price, features }) => {
     </div>
   );
 };
-
 function ListApi() {
   const location = useLocation();
-  const [isAppInfoOpen, setIsAppInfoOpen] = useState(false);
+  const [isAppInfoOpen, setIsAppInfoOpen] = useState(true);
   const [isDocumentOpen, setIsDocumentOpen] = useState(false);
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [singleApi, setSingleApi] = useState();
-
   useEffect(() => {
     if (location.state.data) {
       console.log(location.state.data);
       setSingleApi(location.state.data);
     }
   }, [location]);
-
   const openAppInfo = () => {
     setIsAppInfoOpen(true);
     setIsDocumentOpen(false);
     setIsPricingOpen(false);
   };
-
   const openDocumentation = () => {
     setIsAppInfoOpen(false);
     setIsDocumentOpen(true);
     setIsPricingOpen(false);
   };
-
   const openPricing = () => {
     setIsAppInfoOpen(false);
     setIsDocumentOpen(false);
     setIsPricingOpen(true);
   };
-
   return (
-    <div>
-      {singleApi && (
-        <>
-          <img
-            src={singleApi.image_url}
-            alt={singleApi.name}
-            style={{ width: "100px" }}
-          />
-          <h2>{singleApi.name}</h2>
-        </>
-      )}{" "}
-      <div>
-        <button onClick={openAppInfo}>App info</button>
-        <button onClick={openDocumentation}>Documentation</button>
-        <button onClick={openPricing}>Pricing</button>
+    <div style={{ textAlign: "start", margin: "20px", padding: "30px" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+        }}
+      >
+        {singleApi && (
+          <>
+            <img
+              src={singleApi.image_url}
+              alt={singleApi.name}
+              style={{ width: "80px" }}
+            />
+            <h2 style={{ padding: "30px", fontSize: "2rem" }}>
+              {singleApi.name}
+            </h2>
+          </>
+        )}{" "}
       </div>
-      {isAppInfoOpen && (
-        <div>
-          {/* Render the detailed app info here */}
-          <p>{singleApi.description}</p>
+      <div style={{ margin: "30px 100px", display: "flex" }}>
+        <div onClick={openAppInfo} className="listapi-tabBtn">
+          App info
         </div>
-      )}
-      {isDocumentOpen && (
-        <div>
-          {/* Render the detailed app info here */}
-          <PDFViewer
-            document={{
-              url: "https://arxiv.org/pdf/quant-ph/0410100.pdf",
-            }}
-          />
+        <div onClick={openDocumentation} className="listapi-tabBtn">
+          Documentation
         </div>
+        <div onClick={openPricing} className="listapi-tabBtn">
+          Pricing
+        </div>
+      </div>
+      {singleApi && ( // Check if singleApi has a valid value before rendering
+        <>
+          {isAppInfoOpen && (
+            <div style={{ margin: "0px 100px" }}>
+              {/* Render the detailed app info here */}
+              <p style={{ lineHeight: "2.5vh", letterSpacing: "1.5px" }}>
+                {singleApi.description}
+              </p>
+            </div>
+          )}
+          {isDocumentOpen && (
+            <div>
+              {/* Render the detailed app info here */}
+              {/* <PDFViewer
+                document={{
+                  url: "https://arxiv.org/pdf/quant-ph/0410100.pdf",
+                }}
+              /> */}
+            </div>
+          )}
+          {isPricingOpen && (
+            <div className="subscription-grid">
+              {/* Render the subscription plan grid */}
+              {/* ... (other code) ... */}
+            </div>
+          )}
+        </>
       )}
       {isPricingOpen && (
         <div className="subscription-grid">
@@ -106,5 +127,4 @@ function ListApi() {
     </div>
   );
 }
-
 export default ListApi;
