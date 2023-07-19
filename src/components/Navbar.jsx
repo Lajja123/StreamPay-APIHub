@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { ConnectKitButton } from "connectkit";
 import "../styles/main.scss";
 import logo from "../assets/logo.png";
-import arrowImg from "../assets/Arrow.png";
+
+import { Connectbuttoncustom } from "./Connectbuttoncustom";
 
 function Navbar() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -47,26 +48,14 @@ function Navbar() {
             </li>
           </ul> */}
           <div style={{ display: "inline-block", position: "relative" }}>
-            <ConnectKitButton
+            {/* <ConnectKitButton
               accountStatus={{
                 smallScreen: "avatar",
                 largeScreen: "full",
               }}
-              className="connect-btn"
-            />
-            <img
-              src={arrowImg}
-              alt="Arrow"
-              style={{
-                position: "absolute",
-                top: "50%",
-                width: "20px",
-                backgroundColor: "black",
-                borderRadius: "50px",
-                right: "10px", // Adjust the value as per your requirement to position the arrow image
-                transform: "translateY(-50%)",
-              }}
-            />
+              style={{ backgroundColor: "#2dda8f", color: "black" }}
+            /> */}
+            <Connectbuttoncustom />
           </div>
 
           <button

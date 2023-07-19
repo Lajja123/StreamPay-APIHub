@@ -106,17 +106,6 @@
   margin: 10px;
   width: 70%;
 }
-.ibjPeM,
-.ibjPeM * {
-  font-family: var(--ck-font-family);
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  background-color: #2dda8f;
-  color: black;
-  font-size: 17px;
-  padding-right: 30px;
-}
 
 @media (max-width: 768px) {
   .header {
@@ -190,6 +179,7 @@
 .hero-right-bg1 {
   width: 500px;
 }
+
 .landing-flex {
   display: flex;
   margin: 40px 0px;
@@ -224,30 +214,46 @@
 }
 .card-main {
   display: flex;
+  min-height: 428px;
   align-items: center;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 20px auto;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center center; /* Center the background image both vertically and horizontally */
-  justify-content: space-between;
+  background-position: center center;
+  justify-content: space-around;
   background-image: url(/src/assets/1_bg.png);
 }
 .card-img2 {
   background-image: url("../assets/2_bg.png");
-  background-size: cover; /* Adjust the background size to cover the entire container */
+  background-size: contain; /* Adjust the background size to cover the entire container */
   background-repeat: no-repeat; /* Prevent repeating the background image */
 }
 .card-img3 {
   background-image: url("../assets/3_bg.png");
-  background-size: cover; /* Adjust the background size to cover the entire container */
+  background-size: contain; /* Adjust the background size to cover the entire container */
+  background-repeat: no-repeat; /* Prevent repeating the background image */
+}
+.card-img4 {
+  background-image: url("../assets//4_bg.png");
+  background-size: contain; /* Adjust the background size to cover the entire container */
+  background-repeat: no-repeat; /* Prevent repeating the background image */
+}
+.card-img5 {
+  background-image: url("../assets/5_bg.png");
+  background-size: contain; /* Adjust the background size to cover the entire container */
+  background-repeat: no-repeat; /* Prevent repeating the background image */
+}
+.card-img6 {
+  background-image: url("../assets/6_bg.png");
+  background-size: contain; /* Adjust the background size to cover the entire container */
   background-repeat: no-repeat; /* Prevent repeating the background image */
 }
 
 .card-main img {
-  width: 30%;
+  width: 35%;
   height: auto;
   margin: 20px;
   border-radius: 8px;
