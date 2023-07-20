@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import PDFViewer from "pdf-viewer-reactjs";
+import { useLocation } from "react-router-dom";
+import arrow from "../assets/Arrow.png";
 import "../styles/main.scss";
 
 const SubscriptionPlanCard = ({ title, price, features }) => {
@@ -23,12 +23,21 @@ function ListApi() {
   const [isDocumentOpen, setIsDocumentOpen] = useState(false);
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [singleApi, setSingleApi] = useState();
+  const [arrowRotated, setArrowRotated] = useState(false);
+
+  const handleArrowClick = () => {
+    setArrowRotated(!arrowRotated);
+    // Redirect to the other page when the arrow is clicked
+    window.location.href = "/dashboard"; // Replace "/otherpage" with the actual URL of the other page you want to navigate to
+  };
+
   useEffect(() => {
     if (location.state.data) {
       console.log(location.state.data);
       setSingleApi(location.state.data);
     }
   }, [location]);
+
   const openAppInfo = () => {
     setIsAppInfoOpen(true);
     setIsDocumentOpen(false);
@@ -45,7 +54,26 @@ function ListApi() {
     setIsPricingOpen(true);
   };
   return (
-    <div style={{ textAlign: "start", margin: "20px", padding: "30px" }}>
+    <div style={{ textAlign: "start", margin: "20px" }}>
+      <div
+        style={{
+          color: "white",
+          display: "flex",
+          alignItems: "center",
+          cursor: "pointer",
+        }}
+        onClick={handleArrowClick}
+      >
+        {" "}
+        <img
+          src={arrow}
+          style={{
+            transform: "rotate(180deg)",
+            width: "50px",
+          }}
+        ></img>
+        API Marketplace
+      </div>
       <div
         style={{
           display: "flex",
@@ -77,37 +105,21 @@ function ListApi() {
           Pricing
         </div>
       </div>
-      {singleApi && ( // Check if singleApi has a valid value before rendering
+      {singleApi && (
         <>
           {isAppInfoOpen && (
             <div style={{ margin: "0px 100px" }}>
-              {/* Render the detailed app info here */}
               <p style={{ lineHeight: "2.5vh", letterSpacing: "1.5px" }}>
                 {singleApi.description}
               </p>
             </div>
           )}
-          {isDocumentOpen && (
-            <div>
-              {/* Render the detailed app info here */}
-              {/* <PDFViewer
-                document={{
-                  url: "https://arxiv.org/pdf/quant-ph/0410100.pdf",
-                }}
-              /> */}
-            </div>
-          )}
-          {isPricingOpen && (
-            <div className="subscription-grid">
-              {/* Render the subscription plan grid */}
-              {/* ... (other code) ... */}
-            </div>
-          )}
+          {isDocumentOpen && <div>{singleApi.endpoints}</div>}
+          {isPricingOpen && <div className="subscription-grid"></div>}
         </>
       )}
       {isPricingOpen && (
         <div className="subscription-grid">
-          {/* Render the subscription plan grid */}
           <SubscriptionPlanCard
             title="Basic Plan"
             price="$9.99/month"

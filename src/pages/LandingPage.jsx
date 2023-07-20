@@ -72,7 +72,9 @@ function LandingPage() {
                 ></img>
                 <h2 style={{ padding: "0px 10px" }}>Seamless</h2>
               </div>
-              <h1>Seamless Subscription Management</h1>
+              <h1 style={{ marginTop: "0", marginBottom: "0" }}>
+                Seamless Subscription Management
+              </h1>
               <div
                 style={{
                   padding: "10px 0px",
@@ -99,7 +101,9 @@ function LandingPage() {
                 ></img>
                 <h2 style={{ padding: "0px 10px" }}>Real-Time</h2>
               </div>
-              <h1>Real-Time Payment Experince</h1>
+              <h1 style={{ marginTop: "0", marginBottom: "0" }}>
+                Real-Time Payment Experince
+              </h1>
               <div
                 style={{
                   padding: "10px 0px",
@@ -128,7 +132,9 @@ function LandingPage() {
                 ></img>
                 <h2 style={{ padding: "0px 10px" }}>Automatic</h2>
               </div>
-              <h1>Automatic Access Provisioning</h1>
+              <h1 style={{ marginTop: "0", marginBottom: "0" }}>
+                Automatic Access Provisioning
+              </h1>
               <div
                 style={{
                   padding: "10px 0px",
@@ -157,7 +163,9 @@ function LandingPage() {
                 ></img>
                 <h2 style={{ padding: "0px 10px" }}>Effortless</h2>
               </div>
-              <h1>Effortless Payment Processing</h1>
+              <h1 style={{ marginTop: "0", marginBottom: "0" }}>
+                Effortless Payment Processing
+              </h1>
               <div
                 style={{
                   padding: "10px 0px",
@@ -183,7 +191,9 @@ function LandingPage() {
                 ></img>
                 <h2 style={{ padding: "0px 10px" }}>Flexible</h2>
               </div>
-              <h1>Flexible Subscription Managment</h1>
+              <h1 style={{ marginTop: "0", marginBottom: "0" }}>
+                Flexible Subscription Managment
+              </h1>
               <div
                 style={{
                   padding: "10px 0px",
@@ -212,7 +222,9 @@ function LandingPage() {
                 ></img>
                 <h2 style={{ padding: "0px 10px" }}>Enhanced</h2>
               </div>
-              <h1>Enhanced Payment Process With Superfluid Subscriptions</h1>
+              <h1 style={{ marginTop: "0", marginBottom: "0" }}>
+                Enhanced Payment Process With Superfluid Subscriptions
+              </h1>
               <div
                 style={{
                   padding: "10px 0px",
