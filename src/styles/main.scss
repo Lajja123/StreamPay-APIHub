@@ -237,7 +237,13 @@
   background-position: center center;
   justify-content: space-around;
   background-image: url(/src/assets/1_bg.png);
+  transition: transform 0.3s ease; /* Add transition for the animation */
 }
+
+.card-main:hover {
+  transform: rotate(10deg); /* Apply a 10-degree rotation on hover */
+}
+
 .card-img2 {
   background-image: url("../assets/2_bg.png");
   background-size: contain; /* Adjust the background size to cover the entire container */
@@ -328,14 +334,20 @@
   border-radius: 4px;
   padding: 20px;
   background-color: #f9f9f9;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add 'transform' property to the transition */
   display: flex;
+  cursor: pointer;
   min-height: 25vh;
   align-items: center;
   background: rgb(2, 0, 36);
   background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(9, 9, 121) 100%);
   flex-direction: column;
   justify-content: space-around;
+}
+
+.api-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Example box shadow on hover */
+  transform: scale(1.1); /* Zoom out the card on hover */
 }
 
 .api-card:hover {

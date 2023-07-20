@@ -1,4 +1,8 @@
 import img1 from "../assets/spotify.png";
+import img2 from "../assets/geo.png";
+import img3 from "../assets/whois.png";
+import img4 from "../assets/vault.png";
+import img5 from "../assets/app_store.png";
 export const data = [
   {
     id: 1,
@@ -11,49 +15,28 @@ export const data = [
     id: 2,
     name: "API 2 ",
     description:
-      "Spotify Data API for Millions of songs & podcasts, artists, albums, playlists and more.",
-    image_url: img1,
+      "Searchable database of countries, cities, calling codes, currencies and a lot more.",
+    image_url: img2,
   },
   {
     id: 3,
     name: " API 3",
     description:
-      "Spotify Data API for Millions of songs & podcasts, artists, albums, playlists and more.",
-    image_url: img1,
+      "This is one of the best and fastest performing APIs for iTunes/Mac app store data. We do not cache nor store any information on our servers, instead we do things done by scraping the app store in real-time when requested. No need to mention, the result is well-formatted using JSON and you don't need to deal with parsing the results.",
+    image_url: img3,
   },
   {
     id: 4,
     name: " API 4",
     description:
-      "Spotify Data API for Millions of songs & podcasts, artists, albums, playlists and more.",
-    image_url: img1,
+      "Use it for secure storage and or any sort of secure key management backend. For example you can build essentials for developing your own encrypted notebook app. You can build a secure password storage service. You can also use it as a secure and encrypted confiiguration parameter storage.",
+    image_url: img4,
   },
   {
     id: 5,
     name: " API 5",
     description:
-      "Spotify Data API for Millions of songs & podcasts, artists, albums, playlists and more.",
-    image_url: img1,
-  },
-  {
-    id: 6,
-    name: " API 6",
-    description:
-      "Spotify Data API for Millions of songs & podcasts, artists, albums, playlists and more.",
-    image_url: img1,
-  },
-  {
-    id: 6,
-    name: " API 6",
-    description:
-      "Spotify Data API for Millions of songs & podcasts, artists, albums, playlists and more.",
-    image_url: img1,
-  },
-  {
-    id: 7,
-    name: " API 7",
-    description:
-      "Spotify Data API for Millions of songs & podcasts, artists, albums, playlists and more.",
-    image_url: img1,
+      "This is one of the best and fastest performing APIs for iTunes/Mac app store data. We do not cache nor store any information on our servers, instead we do things done by scraping the app store in real-time when requested. No need to mention, the result is well-formatted using JSON and you don't need to deal with parsing the results.",
+    image_url: img5,
   },
 ];
