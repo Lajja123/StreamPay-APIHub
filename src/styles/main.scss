@@ -39,10 +39,12 @@
         }
 
         .navlink {
-          font-size: 1.2rem;
+          font-size: 1.5rem;
           font-family: "Merriweather Sans";
           font-weight: 400;
-          text-decoration: none;
+          color: white;
+          letter-spacing: 2px;
+          text-decoration: revert;
         }
       }
     }
@@ -387,7 +389,7 @@
 }
 // .............ListApi..........
 .listapi-tabBtn {
-  padding: 0px 20px;
+  padding-right: 20px;
   color: white;
   font-size: 20px;
   cursor: pointer;
@@ -522,4 +524,73 @@
   font-size: 16px;
   color: #666;
   margin: 0;
+}
+.swagger-ui .info {
+  display: none;
+}
+.swagger-ui {
+  margin: 30px 100px;
+}
+.swagger-ui .wrapper {
+  background-color: white;
+}
+
+// ............Registration Details...........
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(9, 9, 121) 100%);
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: start;
+}
+
+form input[type="text"],
+form textarea,
+form input[type="number"] {
+  width: 95%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+form button {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 10px;
+  font-size: 16px;
+  color: black;
+  background-color: rgb(45, 218, 143);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 0 6px 32px -6px #2a23cf;
+  transition: 200ms ease;
+}
+
+form button:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 40px -6px #2a23cf;
+}
+form button:active {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 32px -6px #2a23cf;
 }

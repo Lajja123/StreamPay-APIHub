@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import arrow from "../assets/Arrow.png";
 import "../styles/main.scss";
+import { Link } from "react-router-dom";
+import SwaggerUI from "swagger-ui-react";
+import "swagger-ui-react/swagger-ui.css";
 
 const SubscriptionPlanCard = ({ title, price, features }) => {
   return (
@@ -23,13 +26,6 @@ function ListApi() {
   const [isDocumentOpen, setIsDocumentOpen] = useState(false);
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [singleApi, setSingleApi] = useState();
-  const [arrowRotated, setArrowRotated] = useState(false);
-
-  const handleArrowClick = () => {
-    setArrowRotated(!arrowRotated);
-    // Redirect to the other page when the arrow is clicked
-    window.location.href = "/dashboard"; // Replace "/otherpage" with the actual URL of the other page you want to navigate to
-  };
 
   useEffect(() => {
     if (location.state.data) {
@@ -55,25 +51,27 @@ function ListApi() {
   };
   return (
     <div style={{ textAlign: "start", margin: "20px" }}>
-      <div
-        style={{
-          color: "white",
-          display: "flex",
-          alignItems: "center",
-          cursor: "pointer",
-        }}
-        onClick={handleArrowClick}
-      >
-        {" "}
-        <img
-          src={arrow}
+      <Link to="/dashboard">
+        <div
           style={{
-            transform: "rotate(180deg)",
-            width: "50px",
+            color: "white",
+            display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
           }}
-        ></img>
-        API Marketplace
-      </div>
+        >
+          {" "}
+          <img
+            src={arrow}
+            style={{
+              transform: "rotate(180deg)",
+              width: "50px",
+            }}
+          ></img>
+          API Marketplace
+        </div>
+      </Link>
+
       <div
         style={{
           display: "flex",
@@ -114,7 +112,11 @@ function ListApi() {
               </p>
             </div>
           )}
-          {isDocumentOpen && <div>{singleApi.endpoints}</div>}
+          {isDocumentOpen && (
+            <div>
+              <SwaggerUI url="https://petstore.swagger.io/v2/swagger.json" />
+            </div>
+          )}
           {isPricingOpen && <div className="subscription-grid"></div>}
         </>
       )}

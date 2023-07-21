@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ConnectKitButton } from "connectkit";
+import { useNavigate } from "react-router-dom";
 import "../styles/main.scss";
 import logo from "../assets/logo.png";
 
@@ -8,6 +8,11 @@ import { Connectbuttoncustom } from "./Connectbuttoncustom";
 
 function Navbar() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
+
+  const register = () => {
+    navigate("/registration");
+  };
 
   function handleClick() {
     setIsExpanded(!isExpanded);
@@ -24,37 +29,24 @@ function Navbar() {
             />
           </Link>
 
-          {/* <ul className={isExpanded === false ? "navmenu" : "navmenu active"}>
-            <li className="navitem">
-              <span>
-                <Link to="/page1" className="navlink">
-                  Page1
-                </Link>
-              </span>
-            </li>
-            <li className="navitem">
-              <span>
-                <Link to="/page2" className="navlink">
-                  Page2
-                </Link>
-              </span>
-            </li>
-            <li className="navitem">
-              <span>
-                <Link to="/page3" className="navlink">
-                  Page3
-                </Link>
-              </span>
-            </li>
-          </ul> */}
-          <div style={{ display: "inline-block", position: "relative" }}>
-            {/* <ConnectKitButton
-              accountStatus={{
-                smallScreen: "avatar",
-                largeScreen: "full",
-              }}
-              style={{ backgroundColor: "#2dda8f", color: "black" }}
-            /> */}
+          <div
+            style={{
+              display: "flex",
+              position: "relative",
+              alignItems: "center",
+            }}
+          >
+            <ul className="navmenu navmenu active">
+              <li className="navitem">
+                <span
+                  className="navlink"
+                  onClick={() => register()}
+                  style={{ cursor: "pointer" }}
+                >
+                  List Your API
+                </span>
+              </li>
+            </ul>
             <Connectbuttoncustom />
           </div>
 

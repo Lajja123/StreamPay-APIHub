@@ -4,7 +4,8 @@ import LandingPage from "./pages/LandingPage";
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
 import ListApi from "./components/ListApi";
-import Transacation from "./components/Transacation";
+import Subscription from "./components/Subscription";
+import ApiDetailsForm from "./components/ApiDetailsForm";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/listapi" element={<ListApi />} />
-            <Route path="/subscription" element={<Transacation />} />
+            <Route path="/subscription" element={<Subscription />} />
+            <Route path="/registration" element={<ApiDetailsForm />} />
           </Routes>
         </Router>
       </div>
