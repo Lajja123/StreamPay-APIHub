@@ -8,7 +8,7 @@ contract APIListing {
     struct API {
         string name;
         string description;
-        uint256 price; // Price in wei (smallest unit of Ether)
+        string priceCID; // Price in wei (smallest unit of Ether)
         address walletAddress;
         string image; // You can store the image's IPFS hash or its URL
     }
@@ -16,8 +16,8 @@ contract APIListing {
     mapping(uint256 => API) public apis;
 
     // Events
-    event APIAdded(uint256 indexed apiId, string name, uint256 price);
-    event APIUpdated(uint256 indexed apiId, string name, uint256 price);
+    event APIAdded(uint256 indexed apiId, string name, string price);
+    event APIUpdated(uint256 indexed apiId, string name, string price);
     event APIDeleted(uint256 indexed apiId);
 
     modifier onlyOwner() {
@@ -32,26 +32,26 @@ contract APIListing {
     function addAPI(
         string memory _name,
         string memory _description,
-        uint256 _price,
+        string memory _priceCID,
         address _walletAddress,
         string memory _image
     ) public onlyOwner {
         totalAPIs++;
-        apis[totalAPIs] = API(_name, _description, _price, _walletAddress, _image);
-        emit APIAdded(totalAPIs, _name, _price);
+        apis[totalAPIs] = API(_name, _description, _priceCID, _walletAddress, _image);
+        emit APIAdded(totalAPIs, _name, _priceCID);
     }
 
     function updateAPI(
         uint256 _apiId,
         string memory _name,
         string memory _description,
-        uint256 _price,
+        string memory _priceCID,
         address _walletAddress,
         string memory _image
     ) public onlyOwner {
         require(_apiId <= totalAPIs, "API does not exist");
-        apis[_apiId] = API(_name, _description, _price, _walletAddress, _image);
-        emit APIUpdated(_apiId, _name, _price);
+        apis[_apiId] = API(_name, _description, _priceCID, _walletAddress, _image);
+        emit APIUpdated(_apiId, _name, _priceCID);
     }
 
     function deleteAPI(uint256 _apiId) public onlyOwner {
