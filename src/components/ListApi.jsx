@@ -5,8 +5,22 @@ import "../styles/main.scss";
 import { Link } from "react-router-dom";
 import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
+import { useNavigate } from "react-router-dom";
+import SuperfluidWidget from "@superfluid-finance/widget";
+import productDetails from "./productDetails";
+import paymentDetails from "./paymentDetails";
+import { WagmiConfig } from "wagmi";
+
+import superTokenList from "@superfluid-finance/tokenlist";
+import { ConnectButton, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { wagmiConfig, chains } from "./wagmi";
 
 const SubscriptionPlanCard = ({ title, price, features }) => {
+  const navigate = useNavigate();
+
+  const handleSubscription = () => {
+    navigate("/subscription");
+  };
   return (
     <div className="subscription-card">
       <h3>{title}</h3>
@@ -16,7 +30,55 @@ const SubscriptionPlanCard = ({ title, price, features }) => {
           <li key={index}>{feature}</li>
         ))}
       </ul>
-      <button>Subscription</button>
+      <WagmiConfig config={wagmiConfig}>
+        <RainbowKitProvider chains={chains}>
+          <ConnectButton.Custom>
+            {({ openConnectModal, connectModalOpen }) => {
+              const walletManager = {
+                open: async () => openConnectModal(),
+                isOpen: connectModalOpen,
+              };
+              return (
+                <>
+                  {/* <SuperfluidWidget
+                    productDetails={productDetails}
+                    paymentDetails={paymentDetails}
+                    tokenList={superTokenList}
+                    type="drawer"
+                    walletManager={walletManager}
+                  >
+                    {({ openModal }) => (
+                      <button onClick={() => openModal()}>Drawer</button>
+                    )}
+                  </SuperfluidWidget> */}
+                  <SuperfluidWidget
+                    productDetails={productDetails}
+                    paymentDetails={paymentDetails}
+                    tokenList={superTokenList}
+                    type="dialog"
+                    walletManager={walletManager}
+                  >
+                    {({ openModal }) => (
+                      <button onClick={() => openModal()}>Dialog</button>
+                    )}
+                  </SuperfluidWidget>
+                  {/* <SuperfluidWidget
+                    productDetails={productDetails}
+                    paymentDetails={paymentDetails}
+                    tokenList={superTokenList}
+                    type="full-screen"
+                    walletManager={walletManager}
+                  >
+                    {({ openModal }) => (
+                      <button onClick={() => openModal()}>Full-screen</button>
+                    )}
+                  </SuperfluidWidget> */}
+                </>
+              );
+            }}
+          </ConnectButton.Custom>
+        </RainbowKitProvider>
+      </WagmiConfig>
     </div>
   );
 };
