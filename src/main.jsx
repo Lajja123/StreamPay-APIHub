@@ -9,12 +9,12 @@ import {
   getDefaultConfig,
 } from "connectkit";
 import { configureChains } from "wagmi";
-import { goerli, polygonMumbai } from "wagmi/chains";
+import { celoAlfajores } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
 const { chains } = configureChains(
-  [polygonMumbai, goerli],
+  [celoAlfajores],
   [
     alchemyProvider({ apiKey: "Rwja692xoss6YsaqbUDRNVwpjZrO4ltM" }),
     publicProvider(),

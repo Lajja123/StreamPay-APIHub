@@ -1,6 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Listapi from "../DummyData/ListApi.json";
+import { useAccount } from "wagmi";
+import { Web3Storage } from "web3.storage";
+import { ethers } from "ethers";
+
+const client = new Web3Storage({
+  token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDMyMzFjMGYyN2QzZDQyYTE1MjI1MzQwNDMxYzhhODYzQzU1ODQ2NmEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2OTAyODQ5OTUwMTUsIm5hbWUiOiJkZW1vIn0.0qw-IwIKcEtq1WSqxcgdkv3qpZZpIpgBKOiCgeqLV2E",
+});
+
+const contractAddress = "0x09905C1E44D4FC4DA1c366C92D189E5878D56B71"; // Replace with your actual contract address
 
 const ApiDetailsForm = () => {
+  const [imageCid, setImageCid] = useState();
   const [formValues, setFormValues] = useState({
     imagePreviewUrl: "",
     imageFile: null,
@@ -9,35 +21,83 @@ const ApiDetailsForm = () => {
     price: "",
     walletAddress: "",
   });
+  const { address } = useAccount();
+  const mainAddress = address;
+  console.log(mainAddress);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Create a new object with form data
-    const newApiDetail = {
-      imagePreviewUrl: formValues.imagePreviewUrl,
-      imageFile: formValues.imageFile,
-      apiName: formValues.apiName,
-      description: formValues.description,
-      price: formValues.price,
-      walletAddress: formValues.walletAddress,
-    };
+  useEffect(() => {
+    if (formValues.imageFile) {
+      imageUpload();
+    }
+  }, [formValues.imageFile]);
 
-    // Do something with the newApiDetail object (e.g., send it to a server)
-    console.log("Form Data:", newApiDetail);
-    // Reset form inputs after submission
-    setFormValues({
-      imagePreviewUrl: "",
-      imageFile: null,
-      apiName: "",
-      description: "",
-      price: "",
-      walletAddress: "",
-    });
+  const getContract = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (!ethereum) {
+        throw new Error("Metamask is not installed, please install!");
+      }
+
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+
+      const network = await provider.getNetwork();
+      const { chainId } = network;
+
+      console.log("Connected Chain ID:", chainId);
+
+      if (chainId === 44787) {
+        console.log("Connected to the correct BTTC Network!");
+        const contract = new ethers.Contract(
+          contractAddress,
+          Listapi.abi,
+          signer
+        );
+        return contract;
+      } else {
+        throw new Error("Please connect to the BTTC Network (chain ID 44787)!");
+      }
+    } catch (error) {
+      console.error("Error while getting the contract:", error);
+      throw error;
+    }
   };
 
-  const handleImageChange = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const contract = await getContract();
+      if (!imageCid) {
+        console.error("Error: Image CID is not available.");
+        return;
+      }
+
+      // Manually set gas limit and gas price
+      const gasLimit = 3000000; // Adjust this value based on your contract's gas consumption
+      const gasPrice = ethers.utils.parseUnits("100", "gwei"); // Set the gas price in gwei
+
+      const tx = await contract.addAPI(
+        formValues.apiName.toString(),
+        formValues.description.toString(),
+        formValues.price.toString(),
+        mainAddress,
+        imageCid.toString(),
+        { gasLimit: 300000 } // Use the CID obtained from imageUpload
+      );
+
+      // Wait for the transaction to be mined
+      const receipt = await tx.wait();
+
+      console.log("Transaction Receipt:", receipt);
+      console.log("API added successfully!");
+    } catch (error) {
+      console.error("Error adding API:", error);
+    }
+  };
+
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
-    // Update the formValues state with the selected file and image preview
     setFormValues({
       ...formValues,
       imageFile: file,
@@ -51,6 +111,23 @@ const ApiDetailsForm = () => {
       ...prevValues,
       [name]: value,
     }));
+  };
+
+  const imageUpload = async () => {
+    try {
+      const fileInput = document.querySelector('input[type="file"]');
+      const rootCid = await client.put(fileInput.files, {
+        name: "logo_image",
+        maxRetries: 3,
+      });
+
+      const res = await client.get(rootCid);
+      const files = await res.arrayBuffer(); // Use arrayBuffer to get the files
+      const cidString = rootCid.toString();
+      setImageCid(cidString);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   };
 
   return (
@@ -101,12 +178,13 @@ const ApiDetailsForm = () => {
           />
         </div>
         <div>
-          <label>Wallet Address:</label>
+          <label>API Documentation file:</label>
           <input
             type="text"
             name="walletAddress"
             value={formValues.walletAddress}
             onChange={handleChange}
+            placeholder="swagger url"
             required
           />
         </div>
