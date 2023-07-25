@@ -562,6 +562,7 @@ form input[type="number"] {
   width: 95%;
   padding: 10px;
   font-size: 16px;
+  background-color: white;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
@@ -575,12 +576,12 @@ form button {
   width: 50%;
   margin: 0 auto;
   margin-top: 40px;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
   color: black;
   background-color: rgb(45, 218, 143);
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 6px 32px -6px #2a23cf;
   transition: 200ms ease;

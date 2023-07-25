@@ -40,17 +40,6 @@ const SubscriptionPlanCard = ({ title, price, features }) => {
               };
               return (
                 <>
-                  {/* <SuperfluidWidget
-                    productDetails={productDetails}
-                    paymentDetails={paymentDetails}
-                    tokenList={superTokenList}
-                    type="drawer"
-                    walletManager={walletManager}
-                  >
-                    {({ openModal }) => (
-                      <button onClick={() => openModal()}>Drawer</button>
-                    )}
-                  </SuperfluidWidget> */}
                   <SuperfluidWidget
                     productDetails={productDetails}
                     paymentDetails={paymentDetails}
@@ -59,20 +48,9 @@ const SubscriptionPlanCard = ({ title, price, features }) => {
                     walletManager={walletManager}
                   >
                     {({ openModal }) => (
-                      <button onClick={() => openModal()}>Dialog</button>
+                      <button onClick={() => openModal()}>Subscription</button>
                     )}
                   </SuperfluidWidget>
-                  {/* <SuperfluidWidget
-                    productDetails={productDetails}
-                    paymentDetails={paymentDetails}
-                    tokenList={superTokenList}
-                    type="full-screen"
-                    walletManager={walletManager}
-                  >
-                    {({ openModal }) => (
-                      <button onClick={() => openModal()}>Full-screen</button>
-                    )}
-                  </SuperfluidWidget> */}
                 </>
               );
             }}

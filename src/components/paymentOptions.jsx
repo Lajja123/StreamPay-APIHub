@@ -8,7 +8,7 @@ const paymentOptions = [
       address: "0x1ba8603da702602a8657980e825a6daa03dee93a",
     },
     flowRate: {
-      amountEther: "1",
+      amountEther: "100",
       period: "month",
     },
   },
