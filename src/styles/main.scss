@@ -595,3 +595,16 @@ form button:active {
   transform: translateY(-3px);
   box-shadow: 0 6px 32px -6px #2a23cf;
 }
+.animate-spin {
+  animation: spin 1s linear infinite;
+  width: 25px;
+  height: 25px;
+
+  fill: #080b18;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -16,12 +16,22 @@ import card5Icon from "../assets/flexible_icon.png";
 import card5Img from "../assets/flexible_illustration.png";
 import card6Icon from "../assets/enhanced_icon.png";
 import card6Img from "../assets/enhanced_illustration.png";
+import { GetStarted } from "../components/GetStarted";
+import Listapi from "../DummyData/ListApi.json";
+import { useAccount } from "wagmi";
+import { ethers } from "ethers";
+const contractAddress = "0x09905C1E44D4FC4DA1c366C92D189E5878D56B71";
 
 function LandingPage() {
+  const { address, isConnected, isDisconnected } = useAccount();
+  const walletAddress = address;
+  console.log(walletAddress);
   const navigate = useNavigate();
 
-  const dashboard = () => {
-    navigate("/dashboard");
+  const handleDashboardNavigation = () => {
+    if (isConnected) {
+      navigate("/dashboard");
+    }
   };
 
   return (
@@ -36,10 +46,19 @@ function LandingPage() {
             Our platform revolutionizes the way API providers and consumers
             connect, transact, and collaborate.
           </p>
+
           <div style={{ padding: "10px" }}>
-            <button className="home-btn" onClick={() => dashboard()}>
-              Get started
-            </button>
+            {/* Conditionally render the button or redirect */}
+            {isDisconnected ? (
+              <GetStarted />
+            ) : (
+              <button
+                className="home-btn"
+                onClick={() => handleDashboardNavigation()}
+              >
+                Get started
+              </button>
+            )}
           </div>
         </div>
         <div className="hero-right">

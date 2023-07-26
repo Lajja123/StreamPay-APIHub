@@ -3,6 +3,7 @@ import Listapi from "../DummyData/ListApi.json";
 import { useAccount } from "wagmi";
 import { Web3Storage } from "web3.storage";
 import { ethers } from "ethers";
+import "../styles/main.scss";
 
 const client = new Web3Storage({
   token:
@@ -13,6 +14,7 @@ const contractAddress = "0x09905C1E44D4FC4DA1c366C92D189E5878D56B71"; // Replace
 
 const ApiDetailsForm = () => {
   const [imageCid, setImageCid] = useState();
+  const [btnloading, setbtnloading] = useState(false);
   const [formValues, setFormValues] = useState({
     imagePreviewUrl: "",
     imageFile: null,
@@ -29,6 +31,7 @@ const ApiDetailsForm = () => {
     if (formValues.imageFile) {
       imageUpload();
     }
+    console.log(formValues);
   }, [formValues.imageFile]);
 
   const getContract = async () => {
@@ -66,6 +69,7 @@ const ApiDetailsForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setbtnloading(true);
     try {
       const contract = await getContract();
       if (!imageCid) {
@@ -85,16 +89,19 @@ const ApiDetailsForm = () => {
         imageCid.toString(),
         { gasLimit: 300000 } // Use the CID obtained from imageUpload
       );
-
+      console.log(handleSubmit);
       // Wait for the transaction to be mined
       const receipt = await tx.wait();
 
       console.log("Transaction Receipt:", receipt);
       console.log("API added successfully!");
+      setbtnloading(false);
     } catch (error) {
       console.error("Error adding API:", error);
+      setbtnloading(false);
     }
   };
+  console.log(handleSubmit);
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -129,7 +136,7 @@ const ApiDetailsForm = () => {
       console.error("Error uploading image:", error);
     }
   };
-
+  console.log("formValues:", formValues);
   return (
     <div>
       <h1>Register Your API</h1>
@@ -181,14 +188,30 @@ const ApiDetailsForm = () => {
           <label>API Documentation file:</label>
           <input
             type="text"
-            name="walletAddress"
+            name="documentation url"
             value={formValues.walletAddress}
             onChange={handleChange}
             placeholder="swagger url"
             required
           />
         </div>
-        <button type="submit">Submit Your API</button>
+        <button type="submit" disabled={btnloading}>
+          {btnloading ? (
+            <svg
+              className="animate-spin button-spin-svg-pic"
+              version="1.1"
+              id="L9"
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 100 100"
+            >
+              <path d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"></path>
+            </svg>
+          ) : (
+            <>Submit Your API</>
+          )}
+        </button>
       </form>
     </div>
   );
