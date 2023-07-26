@@ -10,7 +10,7 @@ const client = new Web3Storage({
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDMyMzFjMGYyN2QzZDQyYTE1MjI1MzQwNDMxYzhhODYzQzU1ODQ2NmEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2OTAyODQ5OTUwMTUsIm5hbWUiOiJkZW1vIn0.0qw-IwIKcEtq1WSqxcgdkv3qpZZpIpgBKOiCgeqLV2E",
 });
 
-const contractAddress = "0x09905C1E44D4FC4DA1c366C92D189E5878D56B71"; // Replace with your actual contract address
+const contractAddress = "0xE479D05E135240Db03c6544Da887196C983E667c"; // Replace with your actual contract address
 
 const ApiDetailsForm = () => {
   const [imageCid, setImageCid] = useState();
@@ -188,7 +188,7 @@ const ApiDetailsForm = () => {
           <label>API Documentation file:</label>
           <input
             type="text"
-            name="documentation url"
+            name="walletAddress"
             value={formValues.walletAddress}
             onChange={handleChange}
             placeholder="swagger url"

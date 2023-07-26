@@ -20,7 +20,7 @@ import { GetStarted } from "../components/GetStarted";
 import Listapi from "../DummyData/ListApi.json";
 import { useAccount } from "wagmi";
 import { ethers } from "ethers";
-const contractAddress = "0x09905C1E44D4FC4DA1c366C92D189E5878D56B71";
+const contractAddress = "0xE479D05E135240Db03c6544Da887196C983E667c";
 
 function LandingPage() {
   const { address, isConnected, isDisconnected } = useAccount();

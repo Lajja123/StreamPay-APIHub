@@ -14,20 +14,12 @@ contract APIListing {
     }
 
     mapping(uint256 => API) public apis;
+    mapping(address => uint256[]) public apisByAddress;
 
     // Events
     event APIAdded(uint256 indexed apiId, string name, string price);
     event APIUpdated(uint256 indexed apiId, string name, string price);
     event APIDeleted(uint256 indexed apiId);
-
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can perform this action");
-        _;
-    }
-
-    constructor() {
-        owner = msg.sender;
-    }
 
     function addAPI(
         string memory _name,
@@ -35,9 +27,10 @@ contract APIListing {
         string memory _priceCID,
         address _walletAddress,
         string memory _image
-    ) public onlyOwner {
+    ) public {
         totalAPIs++;
         apis[totalAPIs] = API(_name, _description, _priceCID, _walletAddress, _image);
+        apisByAddress[_walletAddress].push(totalAPIs); // Add the API to the array for the given address
         emit APIAdded(totalAPIs, _name, _priceCID);
     }
 
@@ -48,14 +41,16 @@ contract APIListing {
         string memory _priceCID,
         address _walletAddress,
         string memory _image
-    ) public onlyOwner {
+    ) public {
         require(_apiId <= totalAPIs, "API does not exist");
+        require(apis[_apiId].walletAddress == msg.sender, "You can only update your own APIs");
         apis[_apiId] = API(_name, _description, _priceCID, _walletAddress, _image);
         emit APIUpdated(_apiId, _name, _priceCID);
     }
 
-    function deleteAPI(uint256 _apiId) public onlyOwner {
+    function deleteAPI(uint256 _apiId) public {
         require(_apiId <= totalAPIs, "API does not exist");
+        require(apis[_apiId].walletAddress == msg.sender, "You can only delete your own APIs");
 
         // Move the last API to the deleted position and then delete the last entry
         apis[_apiId] = apis[totalAPIs];
@@ -68,5 +63,16 @@ contract APIListing {
     function getAPI(uint256 _apiId) public view returns (API memory) {
         require(_apiId <= totalAPIs, "API does not exist");
         return apis[_apiId];
+    }
+
+    function getAPIsForAddress(address _walletAddress) public view returns (API[] memory) {
+        uint256[] memory apiIds = apisByAddress[_walletAddress];
+        API[] memory apisForAddress = new API[](apiIds.length);
+
+        for (uint256 i = 0; i < apiIds.length; i++) {
+            apisForAddress[i] = apis[apiIds[i]];
+        }
+
+        return apisForAddress;
     }
 }
